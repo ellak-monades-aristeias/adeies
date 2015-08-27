@@ -10,10 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema adeies_db
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema adeies_db
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `adeies_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `adeies_db` ;
 
