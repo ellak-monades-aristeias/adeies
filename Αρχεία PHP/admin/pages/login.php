@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 
 <head>
 
@@ -36,27 +36,29 @@
 
     <div class="container">
         <div class="row">
+		<div id="headerlogin">
+		<img id="headerlogo" src="img/pdm.png"/>
+		</div>
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Είσοδος Χρήστη</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form name="loginform" method="post" action="login_handler.php" onsubmit="return validate_loginForm();">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Όνομα Χρήστη" name="username" id="username" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Κωδικός" name="password" id="password" type="password" value="">
                                 </div>
                                 <!-- <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div> -->
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Είσοδος</a>
+								<input name="submit" class="btn btn-lg btn-success btn-block" type="submit" value="Είσοδος"/>
                             </fieldset>
                         </form>
                     </div>
@@ -76,6 +78,19 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+	
+	<script type="text/javascript">
+     function validate_loginForm() {
+     var result=true;
+     var username = document.getElementById("username").value;
+     var password = document.getElementById("password").value;
+     if (username=="" || password=="") {
+       result=false;
+       alert("Δεν έχουν συμπληρωθεί όλα τα πεδία")
+     }
+     return result;
+}
+</script>
 
 </body>
 
