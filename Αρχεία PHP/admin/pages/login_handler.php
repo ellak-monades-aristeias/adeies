@@ -3,17 +3,25 @@
 if ($_GET['action']=='login') {
 
   
-  if ( !isset ($_POST['username'], $_POST['password'])) {
-          header('Location: login.php?mode=login&msg=Σφάλμα: Ορισμένα δεδομένα δεν έχουν καταχωρηθεί!');
-      exit();
+  // if ( !isset ($_POST['username'], $_POST['password'])) {
+          // header('Location: login.php?mode=login&msg=Σφάλμα: Ορισμένα δεδομένα δεν έχουν καταχωρηθεί!');
+      // exit();
       
-  }
+  // }
+  
     if ($adminpassword==$_POST['password'] && $adminusername==$_POST['username'])
     {
                          $_SESSION['username']=$_POST['username'];
-                         header("location:login.php");
+                         header("location:index.php");
     }
+      else if ($yppassword==$_POST['password'] && $ypusername==$_POST['username'])
+	  {
+		  $_SESSION['username']=$_POST['username'];
+                         header("location:index.php");
+		  
+	  }
       else
+	  
           header('Location: login.php?msg=Σφάλμα: Το username ή το password είναι λάθος!');
     }
 

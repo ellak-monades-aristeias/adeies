@@ -1,3 +1,4 @@
+<?php require('functions.php'); ?>
 <!DOCTYPE html>
 <html lang="el">
 
@@ -45,8 +46,9 @@
                         <h3 class="panel-title">Είσοδος Χρήστη</h3>
                     </div>
                     <div class="panel-body">
-                        <form name="loginform" method="post" action="login_handler.php" onsubmit="return validate_loginForm();">
+                        <form name="loginform" method="post" action="login_handler.php?action=login" onsubmit="return validate_loginForm();">
                             <fieldset>
+							<?php echo_msg(); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Όνομα Χρήστη" name="username" id="username" type="text" autofocus>
                                 </div>
