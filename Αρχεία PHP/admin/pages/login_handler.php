@@ -22,20 +22,20 @@ if ($_GET['action']=='login') {
 	  }
       else
 	  
-          header('Location: login.php?msg=Σφάλμα: Το username ή το password είναι λάθος!');
+          header('Location: login.php?type=danger&msg=Σφάλμα: Το username ή το password είναι λάθος!');
     }
 
 else if ($_GET['action']=='logout')
 {
  session_start();
   session_destroy();
-  header("Location: login.php?msg=Επιτυχής αποσύνδεση");
+  header("Location: login.php?type=success&msg=Επιτυχής αποσύνδεση");
   exit();
 }
 
 else 
 {
-   header("Location: login.php?msg=Σφάλμα επιλογών");
+   header("Location: login.php?type=danger&msg=Σφάλμα επιλογών");
   exit();
     
 }
