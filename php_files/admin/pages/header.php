@@ -1,4 +1,5 @@
 <?php require("is_logged_in.php"); ?>
+<?php require("functions.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,7 +59,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Περιφέρεια Δυτικής Μακεδονίας - Σύστημα Διαχείρισης Αδειών</a>
+                <a class="navbar-brand" href="home.php">Περιφέρεια Δυτικής Μακεδονίας - Σύστημα Διαχείρισης Αδειών</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -84,7 +85,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Κεντρική Σελίδα</a>
+                            <a href="home.php"><i class="fa fa-home fa-fw"></i> Κεντρική Σελίδα</a>
                         </li>
 						<li>
                             <a href="form.php"><i class="fa fa-edit fa-fw"></i> Νέα Αίτηση</a>
@@ -95,13 +96,14 @@
 						<?php if ($_SESSION["idiotita"]!="0")
 			       {?>
 						<li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> Αξιολόγηση Αιτήσεων</a>
+                                                    <a href="form_evaluate.php"><i class="fa fa-tasks fa-fw"></i> Αξιολόγηση Αιτήσεων</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά</a>
                         </li>
 				   <?php } ?>
                     </ul>
+                    <?php echo_msg(); ?>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>

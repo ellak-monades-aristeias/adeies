@@ -16,26 +16,26 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form name="adeiaform" method="post" action="form_handler.php">
                                         <div class="form-group">
                                             <label>Αριθμός Ημερών Άδειας</label>
-                                            <input class="form-control" type="number" min="1">
+                                            <input class="form-control" name="ar_adeiwn" id="ar_adeiwn" type="number" min="1">
                                         </div>
                                         <div class="form-group">
                                             <label>Είδος Άδειας</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked="true" onclick="radio_checked();">Κανονική
+                                                    <input type="radio" name="typos_id" id="typos_id1" value="0" checked="true" onclick="radio_checked();">Κανονική
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="2" onclick="radio_checked();">Σχολική
+                                                    <input type="radio" name="typos_id" id="typos_id2" value="1" onclick="radio_checked();">Σχολική
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="3" onclick="radio_checked();">Ειδική
+                                                    <input type="radio" name="typos_id" id="typos_id3" value="2" onclick="radio_checked();">Ειδική
                                                 </label>
                                             </div>
                                         </div>
@@ -66,11 +66,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Ημερομηνία Έναρξης</label>
-                                            <input class="form-control" type="date" id ="adeia_start" name="adeia_start" min="<?php echo date("Y-m-d"); ?>">
+                                            <input class="form-control" type="date" id ="date_starts" name="date_starts" min="<?php echo date("Y-m-d"); ?>">
                                         </div>   
                                         <div class="form-group">
                                             <label>Ημερομηνία Λήξης</label>
-                                            <input class="form-control" type="date" id ="adeia_end" name="adeia_end" min="<?php echo date("Y-m-d"); ?>">
+                                            <input class="form-control" type="date" id ="date_ends" name="date_ends" min="<?php echo date("Y-m-d"); ?>">
                                         </div>  
                                         <button type="submit" class="btn btn-default">Υποβολή</button>
                                         <button type="reset" class="btn btn-default">Καθαρισμός</button>
@@ -115,7 +115,7 @@ function validate_Form() {
 
 function radio_checked() {
     
-    var radio = document.getElementById("optionsRadios3");
+    var radio = document.getElementById("typos_id3");
     if (radio.checked)
     {
         document.getElementById("special").disabled=false

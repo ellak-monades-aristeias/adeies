@@ -1,145 +1,73 @@
-<?php require("db_params.php"); ?>
-<?php require("header.php"); ?>
-<?php try { 
-      $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
-      $pdoObject -> exec("set names utf8");
-      $sql = "SELECT onoma, epitheto, ypoloipo_adeion_trexon FROM ypallhlos WHERE username=:username";
-      $statement = $pdoObject -> prepare($sql);
-      $statement->execute( array(':username'=>$_SESSION["username"]));
-      if ($record = $statement -> fetch()) {
-        $record_exists=true;
-        $onoma=$record['onoma'];
-        $epitheto=$record['epitheto'];
-        $adeiestrexon=$record['ypoloipo_adeion_trexon']; 
-      } else $record_exists=false; 
-      $statement->closeCursor();
-      $pdoObject = null;
-    } catch (PDOException $e) {
-        print "Database Error: " . $e->getMessage();
-        die("Αδυναμία δημιουργίας PDO Object");
-    } 
-    ?>
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Κεντρική Σελίδα</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-			<?php if ($_SESSION["idiotita"]=="0")
-			       {?>
-			   <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $adeiestrexon; ?></div>
-                                    <div>Υπόλοιπο Ημερών Άδειας</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				</div>
-			   <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Καλωσήρθατε "<?php echo $onoma.' '.$epitheto ?>"
-                        </div>
-                        <div class="panel-body">
-                            <p>Χρησιμοποιώντας το Σύστημα Διαχείρισης Αδειών της Περιφέρειας Δυτικής Μακεδονίας, έχετε τη δυνατότητα να καταχωρήσετε νέα
-							αίτηση άδειας, να ελέγξετε την πορεία της καταχωρημένης αίτησής σας, να λάβετε αντίγραφο της αίτησής σας σε μορφή PDF καθώς και
-							να έχετε μια επισκόπιση όλων των αιτήσεων που έχετε υποβάλλει ως τώρα.</p>
-                        </div>
-                    </div>
-					         
-				   <?php }
-                   else
-				   {?>
-					    <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-inbox fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>Αιτήσεις προς Επεξεργασία</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Λεπτομέρειες</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-list-alt fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>Επεξεργασμένες Αιτήσεις</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Λεπτομέρειες</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-				<div class="col-lg-3 col-md-6">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $adeiestrexon; ?></div>
-                                    <div>Υπόλοιπο Ημερών Άδειας</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				</div>
-				<div class="panel panel-primary">
-                        <div class="panel-heading">
-                            Καλωσήρθατε "<?php echo $onoma.' '.$epitheto ?>"
-                        </div>
-                        <div class="panel-body">
-                            <p>Χρησιμοποιώντας το Σύστημα Διαχείρισης Αδειών της Περιφέρειας Δυτικής Μακεδονίας, έχετε τη δυνατότητα να αξιολογήσετε
-                            τις αιτήσεις των υπαλλήλων της διεύθυνσής σας, να καταχωρήσετε νέα
-							αίτηση άδειας, να ελέγξετε την πορεία της καταχωρημένης αίτησής σας, να λάβετε αντίγραφο της αίτησής σας σε μορφή PDF καθώς και
-							να έχετε μια επισκόπιση όλων των αιτήσεων που έχετε υποβάλλει ως τώρα.</p>
-                        </div>
-                    </div>
-				   <?php }
-	        ?>
-            <!-- /.row -->
-        
-        <!-- /#page-wrapper -->
+<?php require('functions.php'); ?>
+<!DOCTYPE html>
+<html lang="el">
 
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Περιφέρεια Δυτικής Μακεδονίας - Σύστημα Διαχείρησης Αδειών</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+		<div id="headerlogin">
+                    <a href="index.php"/><img id="headerlogo" src="img/pdm.png"/></a>
+		</div>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Είσοδος Χρήστη</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form name="loginform" method="post" action="login_handler.php?action=login" onsubmit="return validate_loginForm();">
+                            <fieldset>
+							<?php echo_msg(); ?>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Όνομα Χρήστη" name="username" id="username" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Κωδικός Πρόσβασης" name="password" id="password" type="password" value="">
+                                </div>
+                                <!-- <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div> -->
+								<input name="submit" class="btn btn-lg btn-success btn-block" type="submit" value="Είσοδος"/>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /#wrapper -->
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -150,13 +78,21 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+	
+	<script type="text/javascript">
+     function validate_loginForm() {
+     var result=true;
+     var username = document.getElementById("username").value;
+     var password = document.getElementById("password").value;
+     if (username=="" || password=="") {
+       result=false;
+       alert("Δεν έχουν συμπληρωθεί όλα τα πεδία")
+     }
+     return result;
+}
+</script>
 
 </body>
 

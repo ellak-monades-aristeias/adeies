@@ -3,7 +3,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Οι Αιτήσεις Μου</h1>
+                    <h1 class="page-header">Αξιολόγηση Αιτήσεων</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -21,6 +21,8 @@
                                     <thead>
                                         <tr>
                                             <th>Ημερομηνία Υποβολής</th>
+                                            <th>Επώνυμο Υπαλλήλου</th>
+                                            <th>Όνομα Υπαλλήλου</th>
                                             <th>Είδος Άδειας</th>
                                             <th>Κατάσταση</th>                                         
                                         </tr>
@@ -29,9 +31,25 @@
                                         <?php try { 
       $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
       $pdoObject -> exec("set names utf8");
-      $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id WHERE ypallhlosid=:ypallhlosid";
-      $statement = $pdoObject -> prepare($sql);
-      $statement->execute( array(':ypallhlosid'=>$_SESSION['ypallhlosid']));
+      if ($_SESSION['idiotita']=='1')
+      {
+        $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.tmimaid=:tmimaid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
+        $statement = $pdoObject -> prepare($sql);
+        $statement->execute( array(':tmimaid'=>$_SESSION['tmimaid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
+      }
+      else if ($_SESSION['idiotita']=='2')
+      {
+          $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.dieuthinsiid=:dieuthinsiid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
+        $statement = $pdoObject -> prepare($sql);
+        $statement->execute( array(':dieuthinsiid'=>$_SESSION['dieuthinsiid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
+      }
+      else
+      {
+        $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.genikidid=:genikidid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
+        $statement = $pdoObject -> prepare($sql);
+        $statement->execute( array(':genikidid'=>$_SESSION['genikidid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
+      }
+      
       while ($record = $statement -> fetch()) {
           if ($record['katastasi_id']=="0")
           {
@@ -46,6 +64,8 @@
               echo "<tr class='danger'>";
           }
           echo "<td>".$record['date_submitted']."</td>";
+          echo "<td>".$record['epitheto']."</td>";
+          echo "<td>".$record['onoma']."</td>";
           echo "<td>".$record['typosname']."</td>";
           echo "<td>".$record['katname']."</td>";
           echo"</tr>"; 

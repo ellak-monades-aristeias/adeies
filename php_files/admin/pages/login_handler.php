@@ -12,7 +12,7 @@ if ($_GET['action']=='login') {
       try {
     $pdoObject = new PDO("mysql:host=$dbhost; dbname=$dbname;", $dbuser, $dbpass);
       
-      $sql='SELECT password, idiotita_id FROM ypallhlos WHERE username=:username';
+      $sql='SELECT password, idiotita_id, ypallhlosid, tmimaid, dieuthinsiid, genikidid FROM ypallhlos WHERE username=:username';
       $statement = $pdoObject->prepare($sql);
       $result=$statement->execute( array(':username'=>$_POST['username']));   
       if ($record = $statement -> fetch()) {
@@ -20,22 +20,26 @@ if ($_GET['action']=='login') {
                  if ($_POST['password']==$record['password']){
                          $_SESSION['username']=$_POST['username'];
                          $_SESSION['idiotita']=$record['idiotita_id'];
-                         header("location:index.php");
+                         $_SESSION['ypallhlosid']=$record['ypallhlosid'];
+                         $_SESSION['tmimaid']=$record['tmimaid'];
+                         $_SESSION['dieuthinsiid']=$record['dieuthinsiid'];
+                         $_SESSION['genikidid']=$record['genikidid'];
+                         header("location:home.php");
       } else
-          header('Location: login.php?type=danger&msg=Σφάλμα: Το username ή το password είναι λάθος!');
+          header('Location: index.php?type=danger&msg=Σφάλμα: Το Όνομα Χρήστη ή ο Κωδικός Πρόσβασης είναι λάθος!');
       }
       else
-          header('Location: login.php?type=danger&msg=Σφάλμα: Το username ή το password είναι λάθος!');
+          header('Location: index.php?type=danger&msg=Σφάλμα: Το Όνομα Χρήστη ή ο Κωδικός Πρόσβασης είναι λάθος!');
       $statement->closeCursor();
       $pdoObject = null;
   }
   catch (PDOException $e) {
-      header('Location: login.php?type=danger&msg=PDO Exception: '.$e->getMessage());
+      header('Location: index.php?type=danger&msg=PDO Exception: '.$e->getMessage());
       exit();
   }
   
   if ( !$result ) {
-    header('Location: login.php?type=danger&msg=Σφάλμα: Προέκυψε σφάλμα κατά την εκτέλεση του ερωτήματος');
+    header('Location: index.php?type=danger&msg=Σφάλμα: Προέκυψε σφάλμα κατά την εκτέλεση του ερωτήματος');
     exit();
   } 
   
@@ -59,13 +63,13 @@ else if ($_GET['action']=='logout')
 {
  session_start();
   session_destroy();
-  header("Location: login.php?type=success&msg=Επιτυχής αποσύνδεση");
+  header("Location: index.php?type=success&msg=Επιτυχής αποσύνδεση");
   exit();
 }
 
 else 
 {
-   header("Location: login.php?type=danger&msg=Σφάλμα επιλογών");
+   header("Location: index.php?type=danger&msg=Σφάλμα επιλογών");
   exit();
     
 }

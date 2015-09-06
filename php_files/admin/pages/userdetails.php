@@ -8,7 +8,6 @@
       $statement->execute( array(':username'=>$_SESSION["username"]));
       if ($record = $statement -> fetch()) {
         $record_exists=true;
-        $ypid=$record['ypallhlosid'];
         $onoma=$record['onoma'];
         $epitheto=$record['epitheto'];
         $tmima=$record['tmname'];
@@ -31,7 +30,7 @@
       
       $sql2 = "SELECT Count(paidia.ypallhlosid) AS count_paidia FROM paidia WHERE ypallhlosid=:ypid";
       $statement = $pdoObject -> prepare($sql2);
-      $statement->execute( array(':ypid'=>$ypid));
+      $statement->execute( array(':ypid'=>$_SESSION['ypallhlosid']));
       if ($record = $statement -> fetch()) {
           $paidia=$record['count_paidia'];      
       }
@@ -133,30 +132,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
-    
-    <script type="text/javascript">
 
-function validate_Form() {
-  var result=true;
-  var errorString="";
-  if (errorString!=="") alert("Εντοπίστηκαν τα ακόλουθα σφάλματα:\n\n" + errorString);
-  return result;
-}
-
-function radio_checked() {
-    
-    var radio = document.getElementById("optionsRadios3");
-    if (radio.checked)
-    {
-        document.getElementById("special").disabled=false
-    }
-    else
-    {
-        document.getElementById("special").disabled=true;
-    }
-}
-
-</script>
 
 </body>
 
