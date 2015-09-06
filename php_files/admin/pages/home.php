@@ -3,13 +3,11 @@
 <?php try { 
       $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
       $pdoObject -> exec("set names utf8");
-      $sql = "SELECT onoma, epitheto, ypoloipo_adeion_trexon FROM ypallhlos WHERE username=:username";
+      $sql = "SELECT ypoloipo_adeion_trexon FROM ypallhlos WHERE username=:username";
       $statement = $pdoObject -> prepare($sql);
       $statement->execute( array(':username'=>$_SESSION["username"]));
       if ($record = $statement -> fetch()) {
         $record_exists=true;
-        $onoma=$record['onoma'];
-        $epitheto=$record['epitheto'];
         $adeiestrexon=$record['ypoloipo_adeion_trexon']; 
       } else $record_exists=false; 
       
@@ -105,7 +103,7 @@
 				</div>
 			   <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Καλωσήρθατε "<?php echo $onoma.' '.$epitheto ?>"
+                            Καλώς Ορίσατε
                         </div>
                         <div class="panel-body">
                             <p>Χρησιμοποιώντας το Σύστημα Διαχείρισης Αδειών της Περιφέρειας Δυτικής Μακεδονίας, έχετε τη δυνατότητα να καταχωρήσετε νέα
@@ -166,7 +164,7 @@
 				</div>
 				<div class="panel panel-primary">
                         <div class="panel-heading">
-                            Καλωσήρθατε "<?php echo $onoma.' '.$epitheto ?>"
+                            Καλώς Ορίσατε
                         </div>
                         <div class="panel-body">
                             <p>Χρησιμοποιώντας το Σύστημα Διαχείρισης Αδειών της Περιφέρειας Δυτικής Μακεδονίας, έχετε τη δυνατότητα να αξιολογήσετε

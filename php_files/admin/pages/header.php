@@ -49,6 +49,24 @@
 <body>
 
     <div id="wrapper">
+        <?php try { 
+      $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
+      $pdoObject -> exec("set names utf8");
+      $sql = "SELECT onoma, epitheto FROM ypallhlos WHERE username=:username";
+      $statement = $pdoObject -> prepare($sql);
+      $statement->execute( array(':username'=>$_SESSION["username"]));
+      if ($record = $statement -> fetch()) {
+        $record_exists=true;
+        $onoma=$record['onoma'];
+        $epitheto=$record['epitheto'];
+      } else $record_exists=false;  
+      $statement->closeCursor();
+      $pdoObject = null;
+    } catch (PDOException $e) {
+        print "Database Error: " . $e->getMessage();
+        die("Αδυναμία δημιουργίας PDO Object");
+    } 
+    ?>
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -66,7 +84,7 @@
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i> <?php echo $onoma.' '.$epitheto ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="userdetails.php"><i class="fa fa-user fa-fw"></i> Λογαριασμός</a>
