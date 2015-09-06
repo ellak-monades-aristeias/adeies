@@ -9,11 +9,11 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="well">
+<!--                        <div class="panel-heading">
                             Παρακαλώ συμπληρώστε την παρακάτω φόρμα
-                        </div>
-                        <div class="panel-body">
+                        </div>-->
+<!--                        <div class="panel-body">-->
                             <div class="row">
                                 <div class="col-lg-12">
                                     <form name="adeiaform" method="post" action="form_handler.php">
@@ -42,26 +42,26 @@
                                         <div class="form-group">
                                             <label>Είδος Ειδικής Άδειας</label>
                                             <select class="form-control" id="special" disabled="true">
-                                                <option>Γάμου</option>
-                                                <option>Μητρότητας (κύηση, λοχείας, υιοθεσίας)</option>
-                                                <option>Ανατροφής Τέκνου</option>
-                                                <option>Θανάτου</option>
-                                                <option>Χωρίς Αποδοχές</option>
-                                                <option>Υπηρεσιακής Εκπαίδευσης</option>
-                                                <option>Επιμορφωτική</option>
-                                                <option>Εξετάσεων</option>
-                                                <option>Νοσήματος Περιοδικής Νοσηλείας</option>
-                                                <option>Αναπηρίας</option>
                                                 <option>Αιμοδοσίας</option>
+                                                <option>Αναπηρίας</option>
+                                                <option>Αναρρωτική Βραχυχρόνια (Ιατρική Γνωμάτευση)</option>
+                                                <option>Αναρρωτική Βραχυχρόνια (Υπεύθυνη Δήλωση)</option>
+                                                <option>Αναρρωτική Μεγάλης Διάρκειας</option>
+                                                <option>Ανατροφής Τέκνου</option>
+                                                <option>Γάμου</option>
+                                                <option>Ειδική Άδεια Αιρετών</option>
+                                                <option>Ειδική Αναρωτική λόγω Κυοφορίας</option>
                                                 <option>Εκλογική</option>
+                                                <option>Εξετάσεων</option>
+                                                <option>Επιμορφωτική</option>
+                                                <option>Θανάτου</option>
+                                                <option>Μητρότητας (κύηση, λοχείας, υιοθεσίας)</option>
+                                                <option>Νοσήματος Περιοδικής Νοσηλείας</option>
+                                                <option>Παράταση Αναρρωτικής Άδειας</option>
                                                 <option>Συμμετοχής σε Δίκη</option>
                                                 <option>Συνδικαλιστική</option>
-                                                <option>Ειδική Άδεια Αιρετών</option>
-                                                <option>Αναρρωτική Βραχυχρόνια (Υπεύθυνη Δήλωση)</option>
-                                                <option>Αναρρωτική Βραχυχρόνια (Ιατρική Γνωμάτευση)</option>
-                                                <option>Αναρρωτική Μεγάλης Διάρκειας</option>
-                                                <option>Παράταση Αναρρωτικής Άδειας</option>
-                                                <option>Ειδική Αναρωτική λόγω Κυοφορίας</option>
+                                                <option>Υπηρεσιακής Εκπαίδευσης</option>
+                                                <option>Χωρίς Αποδοχές</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <!-- /.row (nested) -->
-                        </div>
+<!--                        </div>-->
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->

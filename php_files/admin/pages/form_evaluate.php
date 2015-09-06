@@ -1,4 +1,3 @@
-<?php require("db_params.php"); ?>
 <?php require("header.php"); ?>
         <div id="page-wrapper">
             <div class="row">

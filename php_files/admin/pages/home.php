@@ -1,4 +1,3 @@
-<?php require("db_params.php"); ?>
 <?php require("header.php"); ?>
 <?php try { 
       $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);

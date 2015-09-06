@@ -1,5 +1,6 @@
 <?php require("is_logged_in.php"); ?>
 <?php require("functions.php"); ?>
+<?php require("db_params.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
