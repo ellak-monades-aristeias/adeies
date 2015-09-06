@@ -23,6 +23,12 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
@@ -62,7 +68,7 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Λογαριασμός</a>
+                        <li><a href="userdetails.php"><i class="fa fa-user fa-fw"></i> Λογαριασμός</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="login_handler.php?action=logout"><i class="fa fa-sign-out fa-fw"></i> Έξοδος</a>
@@ -84,9 +90,9 @@
                             <a href="form.php"><i class="fa fa-edit fa-fw"></i> Νέα Αίτηση</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-file-word-o fa-fw"></i> Οι Αιτήσεις μου</a>
+                            <a href="myforms.php"><i class="fa fa-file-word-o fa-fw"></i> Οι Αιτήσεις μου</a>
                         </li>
-						<?php if ($_SESSION["username"]=="testadmin")
+						<?php if ($_SESSION["idiotita"]!="0")
 			       {?>
 						<li>
                             <a href="#"><i class="fa fa-tasks fa-fw"></i> Αξιολόγηση Αιτήσεων</a>

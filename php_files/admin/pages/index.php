@@ -1,4 +1,24 @@
+<?php require("db_params.php"); ?>
 <?php require("header.php"); ?>
+<?php try { 
+      $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
+      $pdoObject -> exec("set names utf8");
+      $sql = "SELECT onoma, epitheto, ypoloipo_adeion_trexon FROM ypallhlos WHERE username=:username";
+      $statement = $pdoObject -> prepare($sql);
+      $statement->execute( array(':username'=>$_SESSION["username"]));
+      if ($record = $statement -> fetch()) {
+        $record_exists=true;
+        $onoma=$record['onoma'];
+        $epitheto=$record['epitheto'];
+        $adeiestrexon=$record['ypoloipo_adeion_trexon']; 
+      } else $record_exists=false; 
+      $statement->closeCursor();
+      $pdoObject = null;
+    } catch (PDOException $e) {
+        print "Database Error: " . $e->getMessage();
+        die("Αδυναμία δημιουργίας PDO Object");
+    } 
+    ?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -7,7 +27,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-			<?php if ($_SESSION["username"]=="testuser")
+			<?php if ($_SESSION["idiotita"]=="0")
 			       {?>
 			   <div class="row">
                     <div class="col-lg-3 col-md-6">
@@ -18,7 +38,7 @@
                                     <i class="fa fa-calendar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
+                                    <div class="huge"><?php echo $adeiestrexon; ?></div>
                                     <div>Υπόλοιπο Ημερών Άδειας</div>
                                 </div>
                             </div>
@@ -28,7 +48,7 @@
 				</div>
 			   <div class="panel panel-primary">
                         <div class="panel-heading">
-                            Καλωσήρθατε "<?php echo $_SESSION['username']; ?>"
+                            Καλωσήρθατε "<?php echo $onoma.' '.$epitheto ?>"
                         </div>
                         <div class="panel-body">
                             <p>Χρησιμοποιώντας το Σύστημα Διαχείρισης Αδειών της Περιφέρειας Δυτικής Μακεδονίας, έχετε τη δυνατότητα να καταχωρήσετε νέα
@@ -93,7 +113,7 @@
                                     <i class="fa fa-calendar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
+                                    <div class="huge"><?php echo $adeiestrexon; ?></div>
                                     <div>Υπόλοιπο Ημερών Άδειας</div>
                                 </div>
                             </div>
@@ -103,7 +123,7 @@
 				</div>
 				<div class="panel panel-primary">
                         <div class="panel-heading">
-                            Καλωσήρθατε "<?php echo $_SESSION['username']; ?>"
+                            Καλωσήρθατε "<?php echo $onoma.' '.$epitheto ?>"
                         </div>
                         <div class="panel-body">
                             <p>Χρησιμοποιώντας το Σύστημα Διαχείρισης Αδειών της Περιφέρειας Δυτικής Μακεδονίας, έχετε τη δυνατότητα να αξιολογήσετε
