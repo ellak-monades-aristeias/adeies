@@ -78,10 +78,10 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Κεντρική Σελίδα</a>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Κεντρική Σελίδα</a>
                         </li>
 						<li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Νέα Αίτηση</a>
+                            <a href="form.php"><i class="fa fa-edit fa-fw"></i> Νέα Αίτηση</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-file-word-o fa-fw"></i> Οι Αιτήσεις μου</a>
