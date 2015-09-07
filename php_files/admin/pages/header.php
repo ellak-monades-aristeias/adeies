@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Ntemos Dimitrios">
 
     <title>Περιφέρεια Δυτικής Μακεδονίας - Σύστημα Διαχείρισης Αδειών</title>
 
@@ -33,7 +33,7 @@
     <link href="../bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+<!--    <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -115,7 +115,7 @@
 						<?php if ($_SESSION["idiotita"]!="0")
 			       {?>
 						<li>
-                                                    <a href="form_evaluate.php"><i class="fa fa-tasks fa-fw"></i> Αξιολόγηση Αιτήσεων</a>
+                                                    <a href="form_evaluate.php"><i class="fa fa-users fa-fw"></i> Αιτήσεις Υπαλλήλων</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά</a>

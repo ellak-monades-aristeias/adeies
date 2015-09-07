@@ -2,7 +2,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Αξιολόγηση Αιτήσεων</h1>
+                    <h1 class="page-header">Αιτήσεις Υπαλλήλων</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -23,7 +23,8 @@
                                             <th>Επώνυμο Υπαλλήλου</th>
                                             <th>Όνομα Υπαλλήλου</th>
                                             <th>Είδος Άδειας</th>
-                                            <th>Κατάσταση</th>                                         
+                                            <th>Κατάσταση</th>     
+                                            <th>Ενέργειες</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -67,6 +68,7 @@
           echo "<td>".$record['onoma']."</td>";
           echo "<td>".$record['typosname']."</td>";
           echo "<td>".$record['katname']."</td>";
+          echo "<td><a href='formdetails.php?id=".$record['adeia_id']."'>Λεπτομέρειες</a></td>";
           echo"</tr>"; 
       }     
       $statement->closeCursor();

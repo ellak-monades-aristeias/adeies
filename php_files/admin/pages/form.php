@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Ημερομηνία Έναρξης</label>
-                                            <input class="form-control" type="date" id ="date_starts" name="date_starts" min="<?php echo date("Y-m-d"); ?>">
+                                            <input class="form-control" type="date" id ="date_starts" name="date_starts" min="">
                                         </div>   
                                         <div class="form-group">
                                             <label>Ημερομηνία Λήξης</label>

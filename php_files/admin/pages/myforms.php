@@ -21,7 +21,8 @@
                                         <tr>
                                             <th>Ημερομηνία Υποβολής</th>
                                             <th>Είδος Άδειας</th>
-                                            <th>Κατάσταση</th>                                         
+                                            <th>Κατάσταση</th>   
+                                            <th>Ενέργειες</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,7 +48,8 @@
           echo "<td>".$record['date_submitted']."</td>";
           echo "<td>".$record['typosname']."</td>";
           echo "<td>".$record['katname']."</td>";
-          echo"</tr>"; 
+          echo "<td><a href='formdetails.php?id=".$record['adeia_id']."'>Λεπτομέρειες</a></td>";
+          echo "</tr>"; 
       }     
       $statement->closeCursor();
       $pdoObject = null;
