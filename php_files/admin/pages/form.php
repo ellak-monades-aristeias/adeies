@@ -16,7 +16,7 @@
 <!--                        <div class="panel-body">-->
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form name="adeiaform" method="post" action="form_handler.php">
+                                    <form name="adeiaform" method="post" action="form_handler.php?mode=add">
                                         <div class="form-group">
                                             <label>Αριθμός Ημερών Άδειας</label>
                                             <input class="form-control" name="ar_adeiwn" id="ar_adeiwn" type="number" min="1">

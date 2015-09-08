@@ -36,7 +36,8 @@
         $datestarts=$record['date_starts'];
         $dateends=$record['date_ends'];
         $katastasi=$record['katastasi_id'];
-        
+        $aitisiid=$record['adeia_id'];
+        $days=$record['ar_adeiwn'];
 //        $tmima=$record['tmname'];
 //        $gdieutthinsi=$record['gdname'];
 //        $dieuthinsi=$record['dname'];
@@ -113,6 +114,10 @@
                                             <p class="form-control-static"><?php echo $datesubmitted; ?></p>
                                         </div>
                                     <div class="form-group">
+                                            <label>Αιτούμενες Ημέρες</label>
+                                            <p class="form-control-static"><?php echo $days; ?></p>
+                                        </div>
+                                    <div class="form-group">
                                             <label>Επιθυμητή Ημερομηνία Έναρξης</label>
                                             <p class="form-control-static"><?php echo $datestarts; ?></p>
                                         </div>
@@ -127,7 +132,7 @@
                                             <label>Ενέργειες</label>
                                             <p class="form-control-static">
                                                 <?php 
-                                                    echo '<button type="button" class="btn btn-outline btn-success">Έγκριση</button>&nbsp&nbsp<button type="button" class="btn btn-outline btn-danger">Απόρριψη</button>';                                             
+                                                    echo '<a href="form_handler.php?mode=validate&uid='.$_SESSION['ypallhlosid'].'&aid='.$aitisiid.'"/><button type="button" class="btn btn-outline btn-success">Έγκριση</button></a>&nbsp&nbsp<a href="form_handler.php?mode=cancel&uid='.$_SESSION['ypallhlosid'].'&aid='.$aitisiid.'"/><button type="button" class="btn btn-outline btn-danger">Απόρριψη</button></a>';                                             
                                                 ?>
                                                 
                                             </p>
