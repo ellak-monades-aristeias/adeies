@@ -12,54 +12,83 @@
       
       if ($_SESSION['idiotita']=='1')
       {
-        $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.tmimaid=:tmimaid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id=0)";
+        $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.tmimaid=:tmimaid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id=0) AND (ypallhlos.idiotita_id<1)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':tmimaid'=>$_SESSION['tmimaid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
         if ($record = $statement -> fetch()) {
-          $count_new=$record['count_adeies'];
-
+            
+            $count_new=$record['count_adeies'];
+            
       } 
-      $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.tmimaid=:tmimaid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id!=0)";
+      $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.tmimaid=:tmimaid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id!=0) AND (ypallhlos.idiotita_id<1)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':tmimaid'=>$_SESSION['tmimaid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
         if ($record = $statement -> fetch()) {
-          $count_ready=$record['count_adeies'];
+
+            $count_ready=$record['count_adeies'];
 
       } 
       
       }
       else if ($_SESSION['idiotita']=='2')
       {
-        $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.dieuthinsiid=:dieuthinsiid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id=0)";
+        $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.dieuthinsiid=:dieuthinsiid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id=0) AND (ypallhlos.idiotita_id<2)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':dieuthinsiid'=>$_SESSION['dieuthinsiid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
         if ($record = $statement -> fetch()) {
-          $count_new=$record['count_adeies'];
+          
+            $count_new=$record['count_adeies'];
+            
 
       } 
-      $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.dieuthinsiid=:dieuthinsiid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id!=0)";
+      $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.dieuthinsiid=:dieuthinsiid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id!=0) AND (ypallhlos.idiotita_id<2)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':dieuthinsiid'=>$_SESSION['dieuthinsiid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
         if ($record = $statement -> fetch()) {
-          $count_ready=$record['count_adeies'];
+          
+            $count_ready=$record['count_adeies'];
 
       } 
       
       }
-      else if ($_SESSION['idiotita']=='3' || $_SESSION['idiotita']=='4' || $_SESSION['idiotita']=='5')
+      
+      else if ($_SESSION['idiotita']=='3')
       {
-        $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.genikidid=:genikidid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id=0)";
+        $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.genikidid=:genikidid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id=0) AND (ypallhlos.idiotita_id<3)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':genikidid'=>$_SESSION['genikidid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
         if ($record = $statement -> fetch()) {
-          $count_new=$record['count_adeies'];
+           
+            $count_new=$record['count_adeies'];
+            
 
       } 
-      $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.genikidid=:genikidid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id!=0)";
+      $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.genikidid=:genikidid) AND (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id!=0) AND (ypallhlos.idiotita_id<3)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':genikidid'=>$_SESSION['genikidid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
         if ($record = $statement -> fetch()) {
-          $count_ready=$record['count_adeies'];
+          
+            $count_ready=$record['count_adeies'];
+
+      } 
+      }
+      
+      else if ($_SESSION['idiotita']=='4' || $_SESSION['idiotita']=='5')
+      {
+        $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id=0) AND (ypallhlos.idiotita_id<4)";
+        $statement = $pdoObject -> prepare($sql);
+        $statement->execute( array(':ypallhlosid'=>$_SESSION['ypallhlosid']));
+        if ($record = $statement -> fetch()) {
+           
+            $count_new=$record['count_adeies'];
+            
+      } 
+      $sql = "SELECT Count(adeies.adeia_id) AS count_adeies FROM adeies INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.ypallhlosid!=:ypallhlosid) AND (adeies.katastasi_id!=0) AND (ypallhlos.idiotita_id<4)";
+        $statement = $pdoObject -> prepare($sql);
+        $statement->execute( array(':ypallhlosid'=>$_SESSION['ypallhlosid']));
+        if ($record = $statement -> fetch()) {
+          
+            $count_ready=$record['count_adeies'];
 
       } 
       

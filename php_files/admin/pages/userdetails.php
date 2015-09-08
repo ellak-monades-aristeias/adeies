@@ -33,6 +33,21 @@
       if ($record = $statement -> fetch()) {
           $paidia=$record['count_paidia'];      
       }
+
+      if ($paidia>0)
+      {
+          $count_young=0;
+          $sql2 = "SELECT * FROM paidia WHERE ypallhlosid=:ypid";
+          $statement = $pdoObject -> prepare($sql2);
+          $statement->execute( array(':ypid'=>$_SESSION['ypallhlosid']));
+          while ($record = $statement -> fetch()) {
+              if(time() < (strtotime('+17 years', strtotime($record['birthday']))))
+          {
+              $count_young++;
+              
+          }  
+       }
+      }
       $statement->closeCursor();
       $pdoObject = null;
     } catch (PDOException $e) {
@@ -56,32 +71,21 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                        <div class="form-group">
-                                            <label>Όνομα</label>
-                                            <p class="form-control-static"><?php echo $onoma; ?></p>
-                                        </div>
+                                <div class="col-lg-4">
+                                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Προσωπικά Στοιχεία
+                        </div>
+                                        <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Επώνυμο</label>
                                             <p class="form-control-static"><?php echo $epitheto; ?></p>
                                         </div>
                                         <div class="form-group">
-                                            <label>Τμήμα</label>
-                                            <p class="form-control-static"><?php echo $tmima; ?></p>
+                                            <label>Όνομα</label>
+                                            <p class="form-control-static"><?php echo $onoma; ?></p>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Διεύθυνση</label>
-                                            <p class="form-control-static"><?php echo $dieuthinsi; ?></p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Γενική Διεύθυνση</label>
-                                            <p class="form-control-static"><?php echo $gdieutthinsi; ?></p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Ιδιότητα</label>
-                                            <p class="form-control-static"><?php echo $idiotita; ?></p>
-                                        </div>
-                                        <div class="form-group">
+                                      <div class="form-group">
                                             <label>Φύλο</label>
                                             <p class="form-control-static"><?php echo $fylo; ?></p>
                                         </div>
@@ -89,8 +93,46 @@
                                             <label>Αρ. Παιδιών</label>
                                             <p class="form-control-static"><?php echo $paidia; ?></p>
                                         </div>
+                                       <?php if ($paidia>0) { ?>
+                                        <div class="form-group">
+                                            <label>Ανήλικα Παιδιά</label>
+                                            <p class="form-control-static"><?php echo $count_young; ?></p>
+                                        </div>
+                                       <?php } ?>
+                                </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            Επαγγελματικά Στοιχεία
+                        </div>
+                                        <div class="col-lg-12">
+                                    <div class="form-group">
+                                            <label>Γενική Διεύθυνση</label>
+                                            <p class="form-control-static"><?php echo $gdieutthinsi; ?></p>
+                                        </div>
+                                     <div class="form-group">
+                                            <label>Διεύθυνση</label>
+                                            <p class="form-control-static"><?php echo $dieuthinsi; ?></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Τμήμα</label>
+                                            <p class="form-control-static"><?php echo $tmima; ?></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Βαθμός</label>
+                                            <p class="form-control-static"><?php echo $idiotita; ?></p>
+                                        </div> 
+                                        </div>
                                        </div>
-                                        <div class="col-lg-6">
+                                </div>
+                                        <div class="col-lg-4">
+                                            <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            Στοιχεία Αδειών
+                        </div>
+                                                <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>Μέγιστος Αριθμός Αδειών</label>
                                             <p class="form-control-static"><?php echo $maxadeies; ?></p>
@@ -103,7 +145,9 @@
                                             <label>Παλαιό Υπόλοιπο Αδειών</label>
                                             <p class="form-control-static"><?php echo $adeiespalio; ?></p>
                                         </div>
+                                                </div>
                                 </div>
+                                        </div>
                             </div>
                             <!-- /.row (nested) -->
                         </div>

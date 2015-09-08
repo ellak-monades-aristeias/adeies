@@ -51,6 +51,8 @@
       }
       
       while ($record = $statement -> fetch()) {
+          if ($record['idiotita_id']<$_SESSION['idiotita'])
+          {
           if ($record['katastasi_id']=="0")
           {
               echo "<tr class='info'>";
@@ -70,6 +72,7 @@
           echo "<td>".$record['katname']."</td>";
           echo "<td><a href='formdetails.php?id=".$record['adeia_id']."'>Λεπτομέρειες</a></td>";
           echo"</tr>"; 
+          }
       }     
       $statement->closeCursor();
       $pdoObject = null;
