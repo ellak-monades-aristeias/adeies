@@ -29,7 +29,7 @@
                                         <?php try { 
       $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
       $pdoObject -> exec("set names utf8");
-      $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id WHERE ypallhlosid=:ypallhlosid";
+      $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN files ON adeies.adeia_id=files.adeia_id WHERE ypallhlosid=:ypallhlosid";
       $statement = $pdoObject -> prepare($sql);
       $statement->execute( array(':ypallhlosid'=>$_SESSION['ypallhlosid']));
       while ($record = $statement -> fetch()) {
@@ -48,7 +48,8 @@
           echo "<td>".$record['date_submitted']."</td>";
           echo "<td>".$record['typosname']."</td>";
           echo "<td>".$record['katname']."</td>";
-          echo "<td><a href='formdetails.php?id=".$record['adeia_id']."'>Λεπτομέρειες</a></td>";
+          echo "<td><a href='formdetails.php?id=".$record['adeia_id']."'><button type='button' class='btn btn-primary btn-circle'><i class='fa fa-list'></i></button></a>"
+                  . "&nbsp&nbsp<a href='".$record['filepath']."'><button type='button' class='btn btn-success btn-circle'><i class='fa fa-link'></i></button></a></td>";
           echo "</tr>"; 
       }     
       $statement->closeCursor();

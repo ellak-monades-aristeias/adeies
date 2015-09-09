@@ -33,13 +33,13 @@
                                                     <input type="radio" name="typos_id" id="typos_id2" value="1" onclick="radio_checked();">Σχολική
                                                 </label>
                                             </div>
-                                            <div class="radio">
+<!--                                            <div class="radio">
                                                 <label>
                                                     <input type="radio" name="typos_id" id="typos_id3" value="2" onclick="radio_checked();">Ειδική
                                                 </label>
-                                            </div>
+                                            </div>-->
                                         </div>
-                                        <div class="form-group">
+<!--                                        <div class="form-group">
                                             <label>Είδος Ειδικής Άδειας</label>
                                             <select class="form-control" id="special" disabled="true">
                                                 <option>Αιμοδοσίας</option>
@@ -63,7 +63,7 @@
                                                 <option>Υπηρεσιακής Εκπαίδευσης</option>
                                                 <option>Χωρίς Αποδοχές</option>
                                             </select>
-                                        </div>
+                                        </div>-->
                                         <div class="form-group">
                                             <label>Ημερομηνία Έναρξης</label>
                                             <input class="form-control" type="date" id ="date_starts" name="date_starts" min="">

@@ -22,7 +22,28 @@ try {
   }  
   else
   {
-    header('Location: myforms.php?type=success&msg=Η αίτησή σας καταχωρήθηκε επιτυχώς!');
+    $pdoObject = new PDO("mysql:host=$dbhost; dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
+    $pdoObject -> exec("set names utf8"); 
+    $sql = "SELECT * FROM adeies INNER JOIN ypallhlos ON ypallhlos.ypallhlosid=adeies.ypallhlosid INNER JOIN tmima ON ypallhlos.tmimaid=tmima.tmimaid INNER JOIN dieuthinsi ON ypallhlos.dieuthinsiid=dieuthinsi.dieuthinsiid INNER JOIN geniki_dieuthinsi ON ypallhlos.genikidid=geniki_dieuthinsi.genikidid INNER JOIN idiotites ON ypallhlos.idiotita_id=idiotites.idiotita_id WHERE adeies.ypallhlosid=:ypallhlosid ORDER BY adeies.adeia_id DESC";
+      $statement = $pdoObject -> prepare($sql);
+      $statement->execute( array(':ypallhlosid'=>$_SESSION['ypallhlosid']));
+      if ($record = $statement -> fetch()) {
+         $ar_adeiwn=$record['ar_adeiwn'];
+         $trexouses=$record['ypoloipo_adeion_trexon'];
+         $adeia_id=$record['adeia_id'];
+         $datesubmitted=$record['date_submitted'];
+         $datestarts=$record['date_starts'];
+         $dateends=$record['date_ends'];
+         $vathmos=$record['idname'];
+         $onoma=$record['onoma'];
+         $epitheto=$record['epitheto'];
+         $gdname=$record['gdname'];
+         $dname=$record['dname'];
+         $tmname=$record['tmname'];
+        
+      }
+      header('Location: generator.php?onoma='.$onoma.'&epitheto='.$epitheto.'&vathmos='.$vathmos.'&gdname='.$gdname.'&dname='.$dname.'&tmname='.$tmname.'&datestarts='.$datestarts.'&dateends='.$dateends.'&datesubmitted='.$datesubmitted.'&trexouses='.$trexouses.'&ar_adeiwn='.$ar_adeiwn.'&id='.$adeia_id);
+//    header('Location: myforms.php?type=success&msg=Η αίτησή σας καταχωρήθηκε επιτυχώς!');
   }
 }
 

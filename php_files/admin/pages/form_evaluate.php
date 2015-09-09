@@ -33,19 +33,19 @@
       $pdoObject -> exec("set names utf8");
       if ($_SESSION['idiotita']=='1')
       {
-        $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.tmimaid=:tmimaid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
+        $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid INNER JOIN idiotites ON ypallhlos.idiotita_id=idiotites.idiotita_id WHERE (ypallhlos.tmimaid=:tmimaid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':tmimaid'=>$_SESSION['tmimaid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
       }
       else if ($_SESSION['idiotita']=='2')
       {
-          $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.dieuthinsiid=:dieuthinsiid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
+          $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid INNER JOIN idiotites ON ypallhlos.idiotita_id=idiotites.idiotita_id WHERE (ypallhlos.dieuthinsiid=:dieuthinsiid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':dieuthinsiid'=>$_SESSION['dieuthinsiid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
       }
       else
       {
-        $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid WHERE (ypallhlos.genikidid=:genikidid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
+        $sql = "SELECT * FROM adeies INNER JOIN typos_adeias ON adeies.typos_id=typos_adeias.typos_id INNER JOIN katastash ON adeies.katastasi_id=katastash.katastasi_id INNER JOIN ypallhlos ON adeies.ypallhlosid=ypallhlos.ypallhlosid INNER JOIN idiotites ON ypallhlos.idiotita_id=idiotites.idiotita_id WHERE (ypallhlos.genikidid=:genikidid) AND (ypallhlos.ypallhlosid!=:ypallhlosid)";
         $statement = $pdoObject -> prepare($sql);
         $statement->execute( array(':genikidid'=>$_SESSION['genikidid'], ':ypallhlosid'=>$_SESSION['ypallhlosid']));
       }
