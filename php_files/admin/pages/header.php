@@ -26,6 +26,8 @@
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
     
+    <link href="../addons/datepicker/css/datepicker.css" rel="stylesheet">
+    
     <!-- DataTables CSS -->
     <link href="../bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
 

@@ -66,11 +66,11 @@
                                         </div>-->
                                         <div class="form-group">
                                             <label>Ημερομηνία Έναρξης</label>
-                                            <input class="form-control" type="date" id ="date_starts" name="date_starts" min="">
+                                           <input class="form-control" name="date_starts" id="dpd1" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
                                         </div>   
                                         <div class="form-group">
                                             <label>Ημερομηνία Λήξης</label>
-                                            <input class="form-control" type="date" id ="date_ends" name="date_ends" min="<?php echo date("Y-m-d"); ?>">
+                                            <input class="form-control" name="date_ends" id="dpd2" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
                                         </div>  
                                         <button type="submit" class="btn btn-default">Υποβολή</button>
                                         <button type="reset" class="btn btn-default">Καθαρισμός</button>
@@ -104,6 +104,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     
+    <script src="../addons/datepicker/js/bootstrap-datepicker.js"></script>
+    
     <script type="text/javascript">
 
 function validate_Form() {
@@ -126,6 +128,37 @@ function radio_checked() {
     }
 }
 
+ $(document).ready(function(){
+     
+         var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ $('#dpd1').datepicker({
+				format: 'yyyy-mm-dd'
+			});
+                        $('#dpd2').datepicker({
+				format: 'yyyy-mm-dd'
+			});
+var checkin = $('#dpd1').datepicker({
+  onRender: function(date) {
+    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  }
+}).on('changeDate', function(ev) {
+  if (ev.date.valueOf() > checkout.date.valueOf()) {
+    var newDate = new Date(ev.date)
+    newDate.setDate(newDate.getDate() + 1);
+    checkout.setValue(newDate);
+  }
+  checkin.hide();
+  $('#dpd2')[0].focus();
+}).data('datepicker');
+var checkout = $('#dpd2').datepicker({
+  onRender: function(date) {
+    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  }
+}).on('changeDate', function(ev) {
+  checkout.hide();
+}).data('datepicker');
+       });
 </script>
 
 </body>
