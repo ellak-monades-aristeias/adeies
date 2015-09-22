@@ -119,6 +119,9 @@
 						<li>
                                                     <a href="form_evaluate.php"><i class="fa fa-users fa-fw"></i> Αιτήσεις Υπαλλήλων</a>
                         </li>
+                        <?php } ?>
+                        <?php if ($_SESSION["idiotita"]=="4")
+			       {?>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά</a>
                         </li>

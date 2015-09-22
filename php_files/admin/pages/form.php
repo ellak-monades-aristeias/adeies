@@ -25,14 +25,69 @@
                                             <label>Είδος Άδειας</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="typos_id" id="typos_id1" value="0" checked="true" onclick="radio_checked();">Κανονική
+                                                    <input type="radio" name="typos_id" id="typos_id1" value="0" checked="true">Κανονική
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="typos_id" id="typos_id2" value="1" onclick="radio_checked();">Σχολική
+                                                    <input type="radio" name="typos_id" id="typos_id2" value="1">Σχολική
                                                 </label>
                                             </div>
+                                            <?php if ($_SESSION['idiotita']>1)
+                                            { ?>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="typos_id" id="typos_id3" value="2">Τηλεφωνική, για λογαριασμό του/της: 
+                                                    <select class="form-control" id="ypallhlos_telephone">
+                                                        <?php try { 
+      $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
+      $pdoObject -> exec("set names utf8");
+      if ($_SESSION['idiotita']==2)
+      {
+      $sql = "SELECT epitheto, onoma, ypallhlosid FROM ypallhlos WHERE dieuthinsiid=:dieuthinsiid AND idiotita_id<:idiotita_id ORDER BY epitheto ASC";
+      $statement = $pdoObject -> prepare($sql);
+      $statement->execute( array(':dieuthinsiid'=>$_SESSION['dieuthinsiid'], ':idiotita_id'=>$_SESSION['idiotita']));
+      while ($record = $statement -> fetch()) {
+          echo "<option value='".$record['ypallhlosid']."'>".$record['epitheto']."&nbsp".$record['onoma']."</option>";
+      }
+      $statement->closeCursor();
+      $pdoObject = null;
+      }
+      else if ($_SESSION['idiotita']==3)
+      {
+         $sql = "SELECT epitheto, onoma, ypallhlosid FROM ypallhlos WHERE genikidid=:genikidid AND idiotita_id<:idiotita_id ORDER BY epitheto ASC";
+      $statement = $pdoObject -> prepare($sql);
+      $statement->execute( array(':genikidid'=>$_SESSION['genikidid'], ':idiotita_id'=>$_SESSION['idiotita']));
+      while ($record = $statement -> fetch()) {
+          echo "<option value='".$record['ypallhlosid']."'>".$record['epitheto']."&nbsp".$record['onoma']."</option>";
+      }
+      $statement->closeCursor();
+      $pdoObject = null; 
+      }
+      else {
+           $sql = "SELECT epitheto, onoma, ypallhlosid FROM ypallhlos WHERE idiotita_id<:idiotita_id ORDER BY epitheto ASC";
+      $statement = $pdoObject -> prepare($sql);
+      $statement->execute( array(':idiotita_id'=>$_SESSION['idiotita']));
+      while ($record = $statement -> fetch()) {
+          echo "<option value='".$record['ypallhlosid']."'>".$record['epitheto']."&nbsp".$record['onoma']."</option>";
+      }
+      $statement->closeCursor();
+      $pdoObject = null; 
+      }
+    } catch (PDOException $e) {
+        print "Database Error: " . $e->getMessage();
+        die("Αδυναμία δημιουργίας PDO Object");
+    } 
+      
+                                                        
+                                                        
+                                                        ?>
+                                                
+                     
+                                            </select>
+                                                </label>
+                                            </div>
+                                            <?php } ?>
 <!--                                            <div class="radio">
                                                 <label>
                                                     <input type="radio" name="typos_id" id="typos_id3" value="2" onclick="radio_checked();">Ειδική
