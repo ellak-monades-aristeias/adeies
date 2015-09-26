@@ -3,12 +3,20 @@
 
 if ($_GET['mode']=="add")
 {
+    if ($_POST['typos_id']==2)
+    {
+        $ypallhlosid=$_POST['ypallhlos_telephone'];
+    }
+    else
+    {
+        $ypallhlosid=$_SESSION['ypallhlosid'];
+    }
 try { 
     $pdoObject = new PDO("mysql:host=$dbhost; dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
     $pdoObject -> exec("set names utf8"); 
     $sql='INSERT INTO adeies (ypallhlosid, typos_id, date_submitted, date_starts, date_ends, ar_adeiwn) VALUES (:ypallhlosid, :typos_id, CURRENT_TIMESTAMP, :date_starts, :date_ends, :ar_adeiwn)';
     $statement = $pdoObject->prepare($sql);
-    $myresult=$statement->execute( array(':ypallhlosid'=>$_SESSION['ypallhlosid'], ':typos_id'=>$_POST['typos_id'], ':date_starts'=>$_POST['date_starts'], ':date_ends'=>$_POST['date_ends'], ':ar_adeiwn'=>$_POST['ar_adeiwn'] ));
+    $myresult=$statement->execute( array(':ypallhlosid'=>$ypallhlosid, ':typos_id'=>$_POST['typos_id'], ':date_starts'=>$_POST['date_starts'], ':date_ends'=>$_POST['date_ends'], ':ar_adeiwn'=>$_POST['ar_adeiwn'] ));
     $statement->closeCursor();
     $pdoObject = null;
   } catch (PDOException $e) {
@@ -17,7 +25,7 @@ try {
   }
   
   if ( !$myresult ) {
-      header('Location: form.php?type=danger&msg=Σφάλμα: αποτυχία εκτέλεσης ερωτήματος');
+      header('Location: form.php?type=danger&msg=Σφάλμα: αποτυχία εκτέλεσης ερωτήματος'.$ypallhlosid);
     exit();
   }  
   else
@@ -26,7 +34,7 @@ try {
     $pdoObject -> exec("set names utf8"); 
     $sql = "SELECT * FROM adeies INNER JOIN ypallhlos ON ypallhlos.ypallhlosid=adeies.ypallhlosid INNER JOIN tmima ON ypallhlos.tmimaid=tmima.tmimaid INNER JOIN dieuthinsi ON ypallhlos.dieuthinsiid=dieuthinsi.dieuthinsiid INNER JOIN geniki_dieuthinsi ON ypallhlos.genikidid=geniki_dieuthinsi.genikidid INNER JOIN idiotites ON ypallhlos.idiotita_id=idiotites.idiotita_id WHERE adeies.ypallhlosid=:ypallhlosid ORDER BY adeies.adeia_id DESC";
       $statement = $pdoObject -> prepare($sql);
-      $statement->execute( array(':ypallhlosid'=>$_SESSION['ypallhlosid']));
+      $statement->execute( array(':ypallhlosid'=>$ypallhlosid));
       if ($record = $statement -> fetch()) {
          $ar_adeiwn=$record['ar_adeiwn'];
          $trexouses=$record['ypoloipo_adeion_trexon'];

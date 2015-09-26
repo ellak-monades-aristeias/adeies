@@ -25,20 +25,20 @@
                                             <label>Είδος Άδειας</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="typos_id" id="typos_id1" value="0" checked="true">Κανονική
+                                                    <input type="radio" name="typos_id" id="typos_id1" value="0" onclick="radio_checked();" checked="true">Κανονική
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="typos_id" id="typos_id2" value="1">Σχολική
+                                                    <input type="radio" name="typos_id" id="typos_id2" onclick="radio_checked();" value="1">Σχολική
                                                 </label>
                                             </div>
                                             <?php if ($_SESSION['idiotita']>1)
                                             { ?>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="typos_id" id="typos_id3" value="2">Τηλεφωνική, για λογαριασμό του/της: 
-                                                    <select class="form-control" id="ypallhlos_telephone">
+                                                    <input type="radio" name="typos_id" id="typos_id3" value="2" onclick="radio_checked();">Τηλεφωνική, για λογαριασμό του/της: 
+                                                    <select class="form-control" name="ypallhlos_telephone" id="ypallhlos_telephone" disabled="true">
                                                         <?php try { 
       $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
       $pdoObject -> exec("set names utf8");
@@ -175,11 +175,11 @@ function radio_checked() {
     var radio = document.getElementById("typos_id3");
     if (radio.checked)
     {
-        document.getElementById("special").disabled=false
+        document.getElementById("ypallhlos_telephone").disabled=false
     }
     else
     {
-        document.getElementById("special").disabled=true;
+        document.getElementById("ypallhlos_telephone").disabled=true;
     }
 }
 
