@@ -120,10 +120,25 @@
                                                     <a href="form_evaluate.php"><i class="fa fa-users fa-fw"></i> Αιτήσεις Υπαλλήλων</a>
                         </li>
                         <?php } ?>
-                        <?php if ($_SESSION["idiotita"]=="4")
+                        <?php if ($_SESSION["idiotita"]>"1")
 			       {?>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά</a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά Αδειών<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                                <li>
+                                    <a href="stats.php?mode=1">Παρόντες Υπάλληλοι</a>
+                                </li>
+                                <li>
+                                    <a href="stats.php?mode=2">Απόντες Υπάλληλοι</a>
+                                </li>
+                                <li>
+                                    <a href="stats.php?mode=3">Απόντες Μεταξύ Διαστήματος</a>
+                                </li>
+                                <li>
+                                    <a href="stats.php?mode=4">Μηνιαία-Ετήσια Αναφορά</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
 				   <?php } ?>
                     </ul>
