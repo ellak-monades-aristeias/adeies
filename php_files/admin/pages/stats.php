@@ -85,6 +85,11 @@ var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(),
                         $('#dpd2').datepicker({
 				format: 'yyyy-mm-dd'
 			});
+                        
+                        $('#dp1').datepicker()
+  .on('changeDate', function(ev){
+    search();
+  });
 var checkin = $('#dpd3').datepicker({
   onRender: function(date) {
     return date.valueOf() < now.valueOf() ? 'disabled' : '';

@@ -102,9 +102,9 @@ else if ($_GET['mode']=="cancel")
     try { 
     $pdoObject = new PDO("mysql:host=$dbhost; dbname=$dbname;charset=UTF8", $dbuser, $dbpass);
     $pdoObject -> exec("set names utf8"); 
-    $sql='UPDATE adeies SET katastasi_id=:katastasi_id WHERE adeia_id=:adeia_id';
+    $sql='UPDATE adeies SET katastasi_id=:katastasi_id, sxolia=:sxolia WHERE adeia_id=:adeia_id';
     $statement = $pdoObject->prepare($sql);
-    $myresult=$statement->execute( array(':adeia_id'=>$_GET['aid'], ':katastasi_id'=>2));
+    $myresult=$statement->execute( array(':adeia_id'=>$_GET['aid'], ':sxolia'=>$_GET['comments'], ':katastasi_id'=>2));
     $statement->closeCursor();
     $pdoObject = null;
   } catch (PDOException $e) {

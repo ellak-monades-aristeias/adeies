@@ -45,6 +45,7 @@
         $katastasi=$record['katastasi_id'];
         $aitisiid=$record['adeia_id'];
         $days=$record['ar_adeiwn'];
+        $sxolia=$record['sxolia'];
         if ($record['fylo']=="0")
         {
             $fylo="Άνδρας";
@@ -225,16 +226,30 @@
                                     <?php if($_SESSION['idiotita']>$idiotita)
                                                 {
                                     if ($katastasi==0){ ?>
+                                        <div class="form-group">
+                                            <label>Σχόλια</label><p class="form-control-static">
+                                                <textarea name="sxolia" id="sxolia" rows="6" cols="25" placeholder="Συμπληρώστε το σε περίπτωση απόρριψης της αίτησης"></textarea></p>
+                                        </div>
                                     <div class="form-group">
                                             <label>Ενέργειες</label>
                                             <p class="form-control-static">
                                                 <?php 
-                                                    echo '<a href="form_handler.php?mode=validate&uid='.$_SESSION['ypallhlosid'].'&aid='.$aitisiid.'"/><button type="button" class="btn btn-outline btn-success">Έγκριση</button></a>&nbsp&nbsp<a href="form_handler.php?mode=cancel&uid='.$_SESSION['ypallhlosid'].'&aid='.$aitisiid.'"/><button type="button" class="btn btn-outline btn-danger">Απόρριψη</button></a>';                                             
+                                                    echo '<a href="form_handler.php?mode=validate&uid='.$_SESSION['ypallhlosid'].'&aid='.$aitisiid.'"/><button type="button" class="btn btn-outline btn-success">Έγκριση</button></a>&nbsp&nbsp<button type="button" onclick="print();" class="btn btn-outline btn-danger">Απόρριψη</button>';                                             
                                                 ?>
                                                 
                                             </p>
                                         </div>
-                                                <?php } } ?>
+                                                <?php }
+                                                else if ($katastasi==2)
+                                                { ?>
+                                                    <div class="form-group">
+                                               <label>Σχόλια</label><p class="form-control-static">
+                                                        <textarea name="sxolia" id="sxolia" rows="6" cols="25" placeholder="<?php echo $sxolia; ?>" readonly="true"></textarea></p>
+                                               </div>
+                                                    
+                                               <?php }
+                                                
+                                    } ?>
                                 </div>
                             </div>
                                 </div>
@@ -254,7 +269,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src='../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -265,6 +280,14 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+    <script>
+        function print(){
+            var text=document.getElementById("sxolia").value;
+            var url="form_handler.php?mode=cancel&uid=<?php echo $_SESSION['ypallhlosid'] ?>&aid=<?php echo $aitisiid ?>&comments="+text;
+            window.location.assign(url);
+        }
+    
+    </script>
 
 </body>
 
