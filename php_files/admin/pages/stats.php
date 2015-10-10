@@ -14,15 +14,17 @@
                  { ?>
                     <div class="panel-heading">Παρόντες υπάλληλοι ανά ημερομηνία</div>
                     <div class="panel-body">
-                        <label>Επιλέξτε την ημερομηνία που σας ενδιαφέρει και πατήστε "Φόρτωση"</label>
-                        <input class="form-control , col-lg-3" name="date_parontes" id="dpd1" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/><button class="col-lg-2 , btn btn-default" value="Φόρτωση" onclick="search();">Φόρτωση</button>
+                        <label>Επιλέξτε την ημερομηνία που σας ενδιαφέρει. Τα αποτελέσματα φορτώνουν αυτόματα</label>
+                        <input class="form-control , col-lg-3" name="date_parontes" id="dpd1" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
                         <div id="results"><br></div>
                     </div>      
                  <?php } else if ($_GET["mode"]==2)
                  { ?>
                     <div class="panel-heading">Απόντες υπάλληλοι ανά ημερομηνία</div>
                     <div class="panel-body">
-                        <input class="form-control" name="date_apontes" id="dpd2" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
+                        <label>Επιλέξτε την ημερομηνία που σας ενδιαφέρει. Τα αποτελέσματα φορτώνουν αυτόματα</label>
+                        <input class="form-control , col-lg-3" name="date_apontes" id="dpd2" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
+                        <div id="results"><br></div>
                     </div>  
                  <?php } else if ($_GET["mode"]==3)
                  { ?>
@@ -86,10 +88,19 @@ var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(),
 				format: 'yyyy-mm-dd'
 			});
                         
-                        $('#dp1').datepicker()
-  .on('changeDate', function(ev){
-    search();
-  });
+var first = $('#dpd1').datepicker()
+   .on('changeDate', function(ev) {
+    first.hide();
+    search('mode1');
+    
+ }).data('datepicker');
+ 
+ var second = $('#dpd2').datepicker()
+   .on('changeDate', function(ev) {
+    second.hide();
+    search('mode2');
+    
+ }).data('datepicker');
 var checkin = $('#dpd3').datepicker({
   onRender: function(date) {
     return date.valueOf() < now.valueOf() ? 'disabled' : '';
@@ -112,7 +123,7 @@ var checkout = $('#dpd4').datepicker({
 }).data('datepicker');
        });
        
-       function search() {
+       function search(mode) {
 	var xmlhttp;
 	if (window.XMLHttpRequest) {
 		xmlhttp=new XMLHttpRequest();
@@ -127,10 +138,18 @@ var checkout = $('#dpd4').datepicker({
   var d = new Date();
   var url= "statLoader.php?foo="+d;  
   document.getElementById('results').innerHTML="&nbsp;&nbsp;<img src='img/AjaxLoader.gif' class='spinner' alt='Spinner'/>";
+  if (mode=='mode1'){
   var date= document.getElementById("dpd1").value;
   xmlhttp.open("POST",url,true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("date="+date);  
+  xmlhttp.send("date="+date+"&mode=1");  
+  }
+  else if (mode=='mode2'){
+  var date= document.getElementById("dpd2").value;
+  xmlhttp.open("POST",url,true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlhttp.send("date="+date+"&mode=2");   
+  }
   xmlhttp.onreadystatechange=function() {
 		if(xmlhttp.readyState==4 && xmlhttp.status==200) {
 			document.getElementById("results").innerHTML= xmlhttp.responseText;
