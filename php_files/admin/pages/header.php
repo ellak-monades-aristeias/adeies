@@ -123,7 +123,7 @@
                         <?php if ($_SESSION["idiotita"]>"1")
 			       {?>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Στατιστικά Αδειών<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Δεδομένα Αδειών<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                                 <li>
                                     <a href="stats.php?mode=1">Παρόντες Υπάλληλοι</a>
