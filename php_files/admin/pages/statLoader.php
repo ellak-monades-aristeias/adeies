@@ -26,9 +26,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>';
+    $_SESSION['xls']="ΕΠΩΝΥΜΟ \t ΟΝΟΜΑ \t \n";
     while ( $record = $statement->fetch() ) {
         $hasany=true;
         $results++;
+        $_SESSION['xls'] .= $record['epitheto']." \t ".$record['onoma']." \t \n";
         echo '<tr><td>'.$record['epitheto'].'</td><td>'.$record['onoma'].'</td></tr>';
     }
     echo '</tbody></table></div>';
@@ -38,6 +40,7 @@
     }
     else {
          echo '<p class="center">Αριθμός υπαλλήλων που βρέθηκαν: '.$results.'</p>';
+         echo '<a href="excel.php?filename=Αναφορά_Παρόντων_Υπαλλήλων"><p class="center">Εξαγωγή σε Excel</p></a>';
     }
     $statement->closeCursor();
     $pdoObject = null;  
