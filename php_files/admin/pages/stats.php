@@ -30,8 +30,16 @@
                  { ?>
                     <div class="panel-heading">Απόντες υφιστάμενοι μεταξύ διαστήματος ημερομηνιών</div>
                     <div class="panel-body">
-                        <p>Παρόντες υπάλληλοι για την ημερομηνία 
-                        test</p></div>  
+                        <div class="form-group">
+                                            <label>Ημερομηνία Έναρξης</label>
+                                           <input class="form-control" name="date_starts" id="dpd3" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
+                                        </div>   
+                                        <div class="form-group">
+                                            <label>Ημερομηνία Λήξης</label>
+                                            <input class="form-control" name="date_ends" id="dpd4" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
+                                        </div>
+                        <div id="results"><br></div>
+                    </div>  
                  <?php } else if ($_GET["mode"]==4)
                  { ?>
                     <div class="panel-heading">Εβδομαδιαία-Μηνιαία αναφορά</div>
@@ -87,6 +95,12 @@ var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(),
                         $('#dpd2').datepicker({
 				format: 'yyyy-mm-dd'
 			});
+                        $('#dpd3').datepicker({
+				format: 'yyyy-mm-dd'
+			});
+                        $('#dpd4').datepicker({
+				format: 'yyyy-mm-dd'
+			});
                         
 var first = $('#dpd1').datepicker()
    .on('changeDate', function(ev) {
@@ -101,6 +115,14 @@ var first = $('#dpd1').datepicker()
     search('mode2');
     
  }).data('datepicker');
+ 
+  var final = $('#dpd4').datepicker()
+   .on('changeDate', function(ev) {
+    final.hide();
+    search('mode3');
+    
+ }).data('datepicker');
+ 
 var checkin = $('#dpd3').datepicker({
   onRender: function(date) {
     return date.valueOf() < now.valueOf() ? 'disabled' : '';
@@ -149,6 +171,14 @@ var checkout = $('#dpd4').datepicker({
   xmlhttp.open("POST",url,true);
   xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xmlhttp.send("date="+date+"&mode=2");   
+  }
+  else if (mode=='mode3')
+      {
+  var date_starts= document.getElementById("dpd3").value;
+  var date_ends= document.getElementById("dpd4").value;
+  xmlhttp.open("POST",url,true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlhttp.send("date_starts="+date_starts+"&date_ends="+date_ends+"&mode=3");   
   }
   xmlhttp.onreadystatechange=function() {
 		if(xmlhttp.readyState==4 && xmlhttp.status==200) {
