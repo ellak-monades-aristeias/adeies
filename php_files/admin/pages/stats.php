@@ -2,7 +2,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Δεδομένα Αδειών</h1>
+                    <h1 class="page-header">Αναφορές</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -12,23 +12,23 @@
                  <div class="panel panel-info">
                  <?php if ($_GET["mode"]==1)
                  { ?>
-                    <div class="panel-heading">Παρόντες υπάλληλοι ανά ημερομηνία</div>
+                    <div class="panel-heading">Παρόντες υφιστάμενοι ανά ημερομηνία</div>
                     <div class="panel-body">
-                        <label>Επιλέξτε την ημερομηνία που σας ενδιαφέρει. Τα αποτελέσματα φορτώνουν αυτόματα</label>
+                        <label>Επιλέξτε την ημερομηνία που σας ενδιαφέρει</label>
                         <input class="form-control , col-lg-3" name="date_parontes" id="dpd1" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
                         <div id="results"><br></div>
                     </div>      
                  <?php } else if ($_GET["mode"]==2)
                  { ?>
-                    <div class="panel-heading">Απόντες υπάλληλοι ανά ημερομηνία</div>
+                    <div class="panel-heading">Απόντες υφιστάμενοι ανά ημερομηνία</div>
                     <div class="panel-body">
-                        <label>Επιλέξτε την ημερομηνία που σας ενδιαφέρει. Τα αποτελέσματα φορτώνουν αυτόματα</label>
+                        <label>Επιλέξτε την ημερομηνία που σας ενδιαφέρει</label>
                         <input class="form-control , col-lg-3" name="date_apontes" id="dpd2" size="16" type="text" value="ΕΕΕΕ/ΜΜ/ΗΗ"/>
                         <div id="results"><br></div>
                     </div>  
                  <?php } else if ($_GET["mode"]==3)
                  { ?>
-                    <div class="panel-heading">Απόντες υπάλληλοι μεταξύ διαστήματος ημερομηνιών</div>
+                    <div class="panel-heading">Απόντες υφιστάμενοι μεταξύ διαστήματος ημερομηνιών</div>
                     <div class="panel-body">
                         <p>Παρόντες υπάλληλοι για την ημερομηνία 
                         test</p></div>  

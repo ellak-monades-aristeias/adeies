@@ -106,7 +106,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="home.php"><i class="fa fa-home fa-fw"></i> Κεντρική Σελίδα</a>
+                            <a href="home.php"><i class="fa fa-home fa-fw"></i> Αρχική Σελίδα</a>
                         </li>
 						<li>
                             <a href="form.php"><i class="fa fa-edit fa-fw"></i> Νέα Αίτηση</a>
@@ -117,19 +117,19 @@
 						<?php if ($_SESSION["idiotita"]!="0")
 			       {?>
 						<li>
-                                                    <a href="form_evaluate.php"><i class="fa fa-users fa-fw"></i> Αιτήσεις Υπαλλήλων</a>
+                                                    <a href="form_evaluate.php"><i class="fa fa-users fa-fw"></i> Αιτήσεις Υφισταμένων</a>
                         </li>
                         <?php } ?>
                         <?php if ($_SESSION["idiotita"]>"1")
 			       {?>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Δεδομένα Αδειών<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Αναφορές<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
                                 <li>
-                                    <a href="stats.php?mode=1">Παρόντες Υπάλληλοι</a>
+                                    <a href="stats.php?mode=1">Παρόντες Υφιστάμενοι</a>
                                 </li>
                                 <li>
-                                    <a href="stats.php?mode=2">Απόντες Υπάλληλοι</a>
+                                    <a href="stats.php?mode=2">Απόντες Υφιστάμενοι</a>
                                 </li>
                                 <li>
                                     <a href="stats.php?mode=3">Απόντες Μεταξύ Διαστήματος</a>
