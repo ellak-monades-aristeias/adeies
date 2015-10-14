@@ -135,7 +135,16 @@
                                     <a href="stats.php?mode=3">Απόντες Μεταξύ Διαστήματος</a>
                                 </li>
                                 <li>
-                                    <a href="stats.php?mode=4">Μηνιαία-Ετήσια Αναφορά</a>
+                                    <a href="#">Αναλυτικές Αναφορές<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level collapse" aria-expanded="false" style="height: 0px;">
+                                        <li>
+                                            <a href="stats.php?mode=4">Μηνιαία Αναφορά</a>
+                                        </li>
+                                        <li>
+                                            <a href="stats.php?mode=5">Ετήσια Αναφορά</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

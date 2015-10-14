@@ -1,4 +1,34 @@
 <?php require("header.php"); ?>
+<?php 
+try {
+    $pdoObject = new PDO("mysql:host=$dbhost;dbname=$dbname;", $dbuser, $dbpass);
+    $pdoObject -> exec("set names utf8");
+    if ($_SESSION['idiotita']==3){
+    $sql = "SELECT dieuthinsiid, dname FROM dieuthinsi WHERE genikidid=:genikidid ORDER BY dname ASC";
+    $statement = $pdoObject->prepare($sql);
+    $statement->execute( array(':genikidid'=>$_SESSION['genikidid']));
+    $option="";
+    while ( $record = $statement->fetch() ) {
+        $option.="<option value='".$record["dieuthinsiid"]."'>".$record["dname"]."</option>";
+    }
+    }
+    else if ($_SESSION['idiotita']==4 || $_SESSION['idiotita']==5){
+    $sql = "SELECT dieuthinsiid, dname FROM dieuthinsi ORDER BY dname ASC";
+    $statement = $pdoObject->prepare($sql);
+    $statement->execute( array());
+    $option="";
+    while ( $record = $statement->fetch() ) {
+        $option.="<option value='".$record["dieuthinsiid"]."'>".$record["dname"]."</option>";
+    }
+    }
+    $statement->closeCursor();
+    $pdoObject = null;  
+  } catch (PDOException $e) {  
+      die("Database Error: " . $e->getMessage());
+    }
+
+
+?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -42,12 +72,33 @@
                     </div>  
                  <?php } else if ($_GET["mode"]==4)
                  { ?>
-                    <div class="panel-heading">Εβδομαδιαία-Μηνιαία αναφορά</div>
+                    <div class="panel-heading">Αναλυτική Μηνιαία Aναφορά</div>
                     <div class="panel-body">
-                        <p>Παρόντες υπάλληλοι για την ημερομηνία 
-                        test</p></div>  
-                 <?php } else {
-                 } ?>
+                        <?php if ($_SESSION['idiotita']>2) { ?>
+                        <label>Επιλέξτε τη διεύθυνση που σας ενδιαφέρει</label>
+                        <select class="form-control" id="dieuthinsi">
+                            <?php echo $option; ?>
+                        </select>
+                        <?php } ?>
+                        <label>Επιλέξτε τον μήνα που σας ενδιαφέρει</label>
+                        <input class="form-control" name="date_month" id="dpd5" size="16" type="text" value="ΕΕΕΕ/ΜΜ"/>
+                        <div id="results"><br></div>
+                    </div>
+                 <?php } else if ($_GET["mode"]==5)
+                 { ?>
+                    <div class="panel-heading">Αναλυτική Ετήσια Aναφορά</div>
+                    <div class="panel-body">
+                        <?php if ($_SESSION['idiotita']>2) { ?>
+                        <label>Επιλέξτε τη διεύθυνση που σας ενδιαφέρει</label>
+                        <select class="form-control" id="dieuthinsi">
+                            <?php echo $option; ?>
+                        </select>
+                        <?php } ?>
+                        <label>Επιλέξτε το έτος που σας ενδιαφέρει</label>
+                        <input class="form-control" name="date_year" id="dpd6" size="16" type="text" value="ΕΕΕΕ"/> 
+                        <div id="results"><br></div>
+                    </div>  
+                 <?php } else {} ?>
                     </div>
              </div>
                             <!-- /.row (nested) -->
@@ -101,25 +152,49 @@ var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(),
                         $('#dpd4').datepicker({
 				format: 'yyyy-mm-dd'
 			});
+                         $('#dpd5').datepicker({
+				format: 'yyyy-mm',
+                                viewMode: 'months',
+                                minViewMode: 'months'
+			});
+                        $('#dpd6').datepicker({
+				format: 'yyyy-',
+                                viewMode: 'years',
+                                minViewMode: 'years'
+			});
                         
-var first = $('#dpd1').datepicker()
+var one = $('#dpd1').datepicker()
    .on('changeDate', function(ev) {
-    first.hide();
+    one.hide();
     search('mode1');
     
  }).data('datepicker');
  
- var second = $('#dpd2').datepicker()
+ var two = $('#dpd2').datepicker()
    .on('changeDate', function(ev) {
-    second.hide();
+    two.hide();
     search('mode2');
     
  }).data('datepicker');
  
-  var final = $('#dpd4').datepicker()
+  var three = $('#dpd4').datepicker()
    .on('changeDate', function(ev) {
-    final.hide();
+    three.hide();
     search('mode3');
+    
+ }).data('datepicker');
+ 
+ var four = $('#dpd5').datepicker()
+   .on('changeDate', function(ev) {
+    four.hide();
+    search('mode4');
+    
+ }).data('datepicker');
+ 
+ var five = $('#dpd6').datepicker()
+   .on('changeDate', function(ev) {
+    five.hide();
+    search('mode5');
     
  }).data('datepicker');
  
