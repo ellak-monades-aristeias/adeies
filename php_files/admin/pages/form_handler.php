@@ -92,9 +92,17 @@ else if ($_GET['mode']=="validate")
   }  
   else
   {
-    header('Location: form_evaluate.php?type=info&msg=Έγινε έγκριση της αίτησης');
-  }
-    
+      //Η αποστολή email βρίσκεται σε σχόλια καθώς απαιτείται ενσωμάτωση των email των υφισταμένων στη βάση δεδομένων για να λειτουργήσει
+      //
+//      $to = trim([email]);
+//      $subject = 'Έγκριση Άδειας που υποβάλλατε στις [ημ/νια]';
+//      $message = 'Σας ενημερώνουμε οτι εγκρίθηκε η άδεια που υποβάλλατε.';
+//      if (mail($to, $subject, $message)) {
+         header('Location: form_evaluate.php?type=info&msg=Έγινε έγκριση της αίτησης και ειδοποιήθηκε ο υφιστάμενος με e-mail');
+//        } else {
+//      header('Location: form_evaluate.php?type=danger&msg=Σφάλμα αποστολής e-mail!');
+//    }   
+  }   
 }
 
 else if ($_GET['mode']=="cancel")
@@ -118,7 +126,16 @@ else if ($_GET['mode']=="cancel")
   }  
   else
   {
-    header('Location: form_evaluate.php?type=info&msg=Έγινε απόρριψη της αίτησης');
+          //Η αποστολή email βρίσκεται σε σχόλια καθώς απαιτείται ενσωμάτωση των email των υφισταμένων στη βάση δεδομένων για να λειτουργήσει
+      //
+//      $to = trim([email]);
+//      $subject = 'Απόρριψη Άδειας που υποβάλλατε στις [ημ/νια]';
+//      $message = 'Σας ενημερώνουμε οτι απορρίφθηκε η άδεια που υποβάλλατε. Ο λόγος της απόρριψης είναι: [λόγος_απόρριψης]';
+//      if (mail($to, $subject, $message)) {
+         header('Location: form_evaluate.php?type=info&msg=Έγινε απόρριψη της αίτησης και ειδοποιήθηκε ο υφιστάμενος με e-mail');
+//        } else {
+//      header('Location: form_evaluate.php?type=danger&msg=Σφάλμα αποστολής e-mail!');
+//    }  
   }
 }
 else
