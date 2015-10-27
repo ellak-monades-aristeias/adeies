@@ -16,7 +16,7 @@
 <!--                        <div class="panel-body">-->
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form name="adeiaform" method="post" action="form_handler.php?mode=add">
+                                    <form name="adeiaform" method="post" action="form_handler.php?mode=add" onSubmit="return validate_Form();">
                                         <div class="form-group">
                                             <label>Αριθμός Ημερών Άδειας</label>
                                             <input class="form-control" name="ar_adeiwn" id="ar_adeiwn" type="number" min="1">
@@ -166,6 +166,42 @@
 function validate_Form() {
   var result=true;
   var errorString="";
+  var passcheckDigit = /[0-9]/g;
+  var passcheckDate = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+  var ar_adeiwn = document.getElementById("ar_adeiwn").value;
+  var dpd1= document.getElementById("dpd1").value;
+  var dpd2= document.getElementById("dpd2").value;
+  if (ar_adeiwn!=""){
+   if (passcheckDigit.test(ar_adeiwn)==false)
+   {
+       result=false;
+       errorString+="-Μόνο αριθμοί επιτρέπονται στο πεδίο ημερών άδειας \n";
+   }
+   if (passcheckDigit.test(ar_adeiwn)==true && ar_adeiwn<=0)
+   {
+       result=false;
+       errorString+="-Οι ημέρες άδειας πρέπει να είναι θετικός αριθμός \n";
+   }
+  }
+  else {
+       result=false;
+       errorString+="-Το πεδίο 'Αριθμός Ημερών Άδειας' είναι υποχρεωτικό \n";
+  }
+  if (passcheckDate.test(dpd1)==false)
+  {
+       result=false;
+       errorString+="-Πρέπει να συμπληρώσετε σωστά την Ημερομηνία Έναρξης \n";
+  }
+  if (passcheckDate.test(dpd2)==false)
+  {
+       result=false;
+       errorString+="-Πρέπει να συμπληρώσετε σωστά την Ημερομηνία Λήξης \n";
+  }
+  if (dpd1>dpd2)
+  {
+      result=false;
+       errorString+="-Η Ημερομηνία Λήξης πρέπει να είναι μεταγενέστερη της Ημερομηνίας Έναρξης \n";
+  }
   if (errorString!=="") alert("Εντοπίστηκαν τα ακόλουθα σφάλματα:\n\n" + errorString);
   return result;
 }
