@@ -56,3 +56,15 @@ phpmyadmin, γίνεται εισαγωγή του αρχείου .sql ώστε 
 # Issues
 
 Δεν υπάρχουν προς το παρόν issues καθώς η εφαρμογή αναπτύσσεται χωρίς προβλήματα και σύμφωνα με τις αρχικές απαιτήσεις
+
+##Description in English
+
+#Leave Management System
+
+With this system, every public sector is able to digitize the leaves' applications and to improve their submit and review procedure.
+
+-Every employee, is able to connect to the system and submit an application to ask his supervisor for a leave.
+-Then, the supervisor will review the application and will approve or deny it.
+-If the application is approved, the employee is notified and the days off are subtracted for his total days.
+-There are available useful statistics for the supervisor to have a complete view of the employees that are away, that are going to be away etc.
+-Also, export to PDF and XLS is available along with e-mail notifications for every new submission.
